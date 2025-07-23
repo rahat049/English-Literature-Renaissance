@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Renaissance Literature Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #667eea 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f4f4f4" width="1200" height="600"/><g opacity="0.1"><path d="M0,300 Q300,100 600,300 T1200,300 L1200,600 L0,600 Z" fill="%23333"/></g></svg>');
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .timeline-section {
+            background: white;
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #3498db, #9b59b6);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #3498db, #9b59b6, #e74c3c);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 50px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) .content {
+            margin-left: 0;
+            margin-right: 55%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .content {
+            margin-left: 55%;
+            margin-right: 0;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 4px solid #3498db;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-marker {
+            transform: translateX(-50%) scale(1.5);
+            border-color: #e74c3c;
+            box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
+        }
+
+        .content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .timeline-item:nth-child(odd) .content::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: -15px;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-left-color: white;
+        }
+
+        .timeline-item:nth-child(even) .content::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: -15px;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-right-color: white;
+        }
+
+        .period {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .author-name {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .title {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .works-section {
+            margin: 20px 0;
+        }
+
+        .works-title {
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .works-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .characters {
+            background: #e8f5e8;
+            border-left-color: #27ae60;
+        }
+
+        .quote {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+            font-style: italic;
+            color: #856404;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .filter-section {
+            background: #f8f9fa;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid #3498db;
+            color: #3498db;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            
+            .timeline::before { left: 30px; }
+            
+            .timeline-item:nth-child(odd) .content,
+            .timeline-item:nth-child(even) .content {
+                margin-left: 70px;
+                margin-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-marker { left: 30px; }
+            
+            .timeline-item:nth-child(odd) .content::after,
+            .timeline-item:nth-child(even) .content::after {
+                left: -15px;
+                right: auto;
+                border: 15px solid transparent;
+                border-right-color: white;
+                border-left-color: transparent;
+            }
+            
+            .author-name { font-size: 1.5rem; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>English Renaissance Literature</h1>
+            <p>A Journey Through the Golden Age of English Writing (1500-1660)</p>
+            <p>Discover the masters who shaped the English language and literature forever</p>
+        </div>
+        <div class="scroll-indicator">
+            <div style="font-size: 2rem; color: white;">↓</div>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="container">
+            <h2 style="margin-bottom: 40px; font-size: 2.5rem;">Literary Renaissance</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">22</span>
+                    <span class="stat-label">Great Authors</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">160</span>
+                    <span class="stat-label">Years Covered</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Literary Impact</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-section">
+        <div class="container">
+            <h2>Explore by Category</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterAuthors('all')">All Authors</button>
+                <button class="filter-btn" onclick="filterAuthors('playwright')">Playwrights</button>
+                <button class="filter-btn" onclick="filterAuthors('poet')">Poets</button>
+                <button class="filter-btn" onclick="filterAuthors('philosopher')">Philosophers</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">Timeline of Literary Giants</h2>
+            <div class="timeline" id="timeline">
+                <!-- Timeline items will be generated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const authors = [
+            {
+                period: "1558–1603",
+                name: "Thomas Norton & Thomas Sackville",
+                title: "First English Tragedy",
+                works: "Gorboduc (Ferrex and Porrex)",
+                characters: "Gorboduc, Ferrex",
+                quote: "-",
+                category: "playwright"
+            },
+            {
+                period: "1500–1660",
+                name: "Christopher Marlowe",
+                title: "Father of English Tragedy",
+                works: "Doctor Faustus, The Jew of Malta, Tamburlaine the Great, Edward II, Dido, Queen of Carthage",
+                characters: "Faustus, Barabas, Tamburlaine, Edward II",
+                quote: "Was this the face...",
+                category: "playwright"
+            },
+            {
+                period: "1500–1660",
+                name: "Edmund Spenser",
+                title: "Poet's Poet",
+                works: "The Faerie Queene, The Shepheardes Calender, Amoretti",
+                characters: "Red Cross Knight, Una",
+                quote: "-",
+                category: "poet"
+            },
+            {
+                period: "1558–1603",
+                name: "Nicholas Udall",
+                title: "Father of English Comedy",
+                works: "Ralph Roister Doister, Respublica",
+                characters: "Ralph Roister",
+                quote: "-",
+                category: "playwright"
+            },
+            {
+                period: "1558–1603",
+                name: "Sir Thomas Wyatt",
+                title: "Father of English Sonnet",
+                works: "Tottel's Miscellany",
+                characters: "-",
+                quote: "-",
+                category: "poet"
+            },
+            {
+                period: "1558–1603",
+                name: "Sir Philip Sidney",
+                title: "Courtier Poet",
+                works: "Arcadia, An Apology for Poetry, The Lady of May",
+                characters: "-",
+                quote: "-",
+                category: "poet"
+            },
+            {
+                period: "1558–1603",
+                name: "John Webster",
+                title: "Revenge Tragedy",
+                works: "The Duchess of Malfi, The White Devil, The Devil's Law Case",
+                characters: "Duchess, Bosola",
+                quote: "I know death hath...",
+                category: "playwright"
+            },
+            {
+                period: "1558–1603",
+                name: "Ben Jonson",
+                title: "Comedy of Humours",
+                works: "Volpone, The Alchemist, Every Man in His Humour, Epicoene",
+                characters: "Volpone, Mosca",
+                quote: "-",
+                category: "playwright"
+            },
+            {
+                period: "1558–1603",
+                name: "Thomas Kyd",
+                title: "Revenge Tragedy",
+                works: "The Spanish Tragedy",
+                characters: "Hieronimo",
+                quote: "-",
+                category: "playwright"
+            },
+            {
+                period: "1558–1603",
+                name: "Thomas More",
+                title: "Utopian Writer",
+                works: "Utopia",
+                characters: "-",
+                quote: "-",
+                category: "philosopher"
+            },
+            {
+                period: "1558–1603",
+                name: "George Chapman",
+                title: "Homer Translator",
+                works: "Iliad, Odyssey",
+                characters: "-",
+                quote: "-",
+                category: "poet"
+            },
+            {
+                period: "1500–1660",
+                name: "Niccolo Machiavelli",
+                title: "Father of Political Science",
+                works: "The Prince",
+                characters: "-",
+                quote: "End justifies means",
+                category: "philosopher"
+            },
+            {
+                period: "1500–1660",
+                name: "Miguel de Cervantes",
+                title: "-",
+                works: "Don Quixote",
+                characters: "Don Quixote, Sancho Panza",
+                quote: "-",
+                category: "playwright"
+            },
+            {
+                period: "1500–1660",
+                name: "Francis Bacon",
+                title: "Father of English Essays",
+                works: "Essays (Of Studies, Of Truth, Of Revenge), Novum Organum, Advancement of Learning",
+                characters: "-",
+                quote: "Knowledge is power",
+                category: "philosopher"
+            },
+            {
+                period: "1500–1660",
+                name: "William Shakespeare",
+                title: "Bard of Avon",
+                works: "Hamlet, Macbeth, Othello, King Lear, Julius Caesar, Romeo and Juliet, The Merchant of Venice, A Midsummer Night's Dream, The Tempest, Twelfth Night, As You Like It, The Taming of the Shrew",
+                characters: "Hamlet, Lady Macbeth, Iago, Othello, Portia, Shylock, Rosalind, Kate, Cleopatra",
+                quote: "To be or not to be; All the world's a stage; Fair is foul",
+                category: "playwright"
+            },
+            {
+                period: "1603–1625",
+                name: "John Donne",
+                title: "Metaphysical Poet",
+                works: "The Sun Rising, A Valediction: Forbidding Mourning, The Flea, The Canonization",
+                characters: "-",
+                quote: "No man is an island",
+                category: "poet"
+            },
+            {
+                period: "1603–1625",
+                name: "Andrew Marvell",
+                title: "Metaphysical Poet",
+                works: "To His Coy Mistress, The Garden",
+                characters: "-",
+                quote: "-",
+                category: "poet"
+            },
+            {
+                period: "1603–1625",
+                name: "George Herbert",
+                title: "Religious Poet",
+                works: "The Collar, The Temple",
+                characters: "-",
+                quote: "-",
+                category: "poet"
+            },
+            {
+                period: "1625–1660",
+                name: "Robert Herrick",
+                title: "Cavalier Poet",
+                works: "To Daffodils, Delight in Disorder",
+                characters: "-",
+                quote: "Gather ye rosebuds...",
+                category: "poet"
+            },
+            {
+                period: "1625–1660",
+                name: "Thomas Hobbes",
+                title: "Political Philosopher",
+                works: "Leviathan",
+                characters: "-",
+                quote: "Life is nasty...",
+                category: "philosopher"
+            },
+            {
+                period: "1625–1660",
+                name: "Jeremy Taylor",
+                title: "Theologian",
+                works: "Holy Living, Holy Dying",
+                characters: "-",
+                quote: "-",
+                category: "philosopher"
+            }
+        ];
+
+        function createTimelineItem(author, index) {
+            return `
+                <div class="timeline-item" data-category="${author.category}" style="animation-delay: ${index * 0.1}s">
+                    <div class="timeline-marker"></div>
+                    <div class="content">
+                        <div class="period">${author.period}</div>
+                        <h3 class="author-name">${author.name}</h3>
+                        ${author.title !== '-' ? `<div class="title">${author.title}</div>` : ''}
+                        
+                        <div class="works-section">
+                            <div class="works-title">Notable Works:</div>
+                            <div class="works-list">${author.works}</div>
+                        </div>
+                        
+                        ${author.characters !== '-' ? `
+                        <div class="works-section">
+                            <div class="works-title">Key Characters:</div>
+                            <div class="works-list characters">${author.characters}</div>
+                        </div>
+                        ` : ''}
+                        
+                        ${author.quote !== '-' ? `
+                        <div class="works-section">
+                            <div class="works-title">Famous Quote:</div>
+                            <div class="works-list quote">"${author.quote}"</div>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function initializeTimeline() {
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = authors.map((author, index) => createTimelineItem(author, index)).join('');
+            
+            // Animate items on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                observer.observe(item);
+            });
+        }
+
+        function filterAuthors(category) {
+            const items = document.querySelectorAll('.timeline-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter items
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => item.classList.add('animate'), 100);
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('animate');
+                }
+            });
+        }
+
+        // Initialize the timeline when page loads
+        document.addEventListener('DOMContentLoaded', initializeTimeline);
+
+        // Smooth scrolling for the scroll indicator
+        document.querySelector('.scroll-indicator').addEventListener('click', () => {
+            document.querySelector('.stats').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
